@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'items#index'
+  get :search, to: "search#show"
 
-  resources :search 
   resources :items, only: [:index, :show]
   namespace :api do
     namespace :v1 do

@@ -15,4 +15,10 @@
     </div>
   <% end %>
 </div>
-
+<div class='zip'>
+  <%= form_tag(search_path, method: "get") do %>
+    <%= label_tag  %>
+    <%= text_field_tag :zip %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>

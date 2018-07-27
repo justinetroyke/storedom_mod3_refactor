@@ -11,12 +11,13 @@ describe 'enter zip code for stores near by' do
       fill_in :zip, with: zip
       click_on 'Search'
       # And I fill in a search box with "80202" and click "search"
-      expect(current_path).to be("/search")
+      expect(current_path).to eq("/search")
       # Then my current path should be "/search" (ignoring params)
       expect(page).to have_content(message)
       # And I should see a message that says "14 Total Stores"
       within('.stores') do
-        expect(page).to have_content()
+        expect(page).to have_content("BELMAR CO")
+        xpect(page).to have_content("Lakewood")
         expect(page).to have_content()
       end
       # And I should see stores within 25 miles of 80202
