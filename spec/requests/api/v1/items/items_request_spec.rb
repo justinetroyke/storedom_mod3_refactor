@@ -38,23 +38,22 @@ describe 'Items API' do
     expect(result["image_url"]).to eq(item.image_url)
     expect(result['created_at']).to be_nil
     expect(result['updated_at']).to be_nil
-    expect(items.first["id"]).to eq(item.id)
-    expect(items.first["name"]).to eq(item.name)
-    expect(items.first["description"]).to eq(item.description)
-    expect(items.first["image_url"]).to eq(item.image_url)
     # I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+  end
+
+  it 'can delete one item by id' do
+    items = create_list(:item, 3)
+    item = create(:item)
+
+    expect{delete "/api/v1/items/#{item.id}"}.to change(Item, :count).by(-1)
+    # When I send a DELETE request to `/api/v1/items/1`
+    expect(response).to be_successful
+    expect(Item.count).to eq(3)
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    # I receive a 204 JSON response if the record is successfully deleted
   end
 end
 
-# *1. Create an API*
-#
-# We need an API for the application that can both read and write data. Start by focusing on functionality for items. All of this should happen in a dedicated, versioned controller.
-#
-#
-#
-# When I send a DELETE request to `/api/v1/items/1`
-# I receive a 204 JSON response if the record is successfully deleted
-#
 # When I send a POST request to `/api/v1/items` with a name, description, and image_url
 # I receive a 201 JSON  response if the record is successfully created
 # And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
