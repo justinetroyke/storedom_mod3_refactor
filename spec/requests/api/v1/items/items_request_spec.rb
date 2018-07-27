@@ -24,23 +24,24 @@ describe 'Items API' do
   end
 
   it 'can get one item by id' do
-    create_list(:item, 3)
+    items = create_list(:item, 3)
     item = create(:item)
-
 
     get "/api/v1/items/#{item.id}"
     # When I send a GET request to `/api/v1/items/1`
-
     expect(response).to be_successful
     result = JSON.parse(response.body)
 
-    expect(result.count).to eq(1)
     expect(result["id"]).to eq(item.id)
     expect(result["name"]).to eq(item.name)
     expect(result["description"]).to eq(item.description)
     expect(result["image_url"]).to eq(item.image_url)
     expect(result['created_at']).to be_nil
     expect(result['updated_at']).to be_nil
+    expect(items.first["id"]).to eq(item.id)
+    expect(items.first["name"]).to eq(item.name)
+    expect(items.first["description"]).to eq(item.description)
+    expect(items.first["image_url"]).to eq(item.image_url)
     # I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
   end
 end
