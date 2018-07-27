@@ -7,6 +7,11 @@ class Api::V1::ItemsController < ApplicationController
     render json: Item.find(params[:id])
   end
 
+  def create
+    binding.pry
+    render json: Item.create(params)
+  end
+
   def destroy
     Item.delete(params[:id])
   end

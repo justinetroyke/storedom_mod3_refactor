@@ -52,10 +52,26 @@ describe 'Items API' do
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
     # I receive a 204 JSON response if the record is successfully deleted
   end
+
+  it 'cretes a new a new item' do
+    item_params = { name: "Bowling Ball", description: "Over the line", image_url: "http://robohash.org/bowling_ball.png?set=set2&bgset=bg1&size=200x200"}
+
+    post "/api/v1/items", params: {item: item_params}
+    # item = JSON.parse(response.body)
+    # When I send a POST request to `/api/v1/items` with a name, description, and image_url
+    item = Item.last
+    assert_response :success
+    expect(response).to be_successful
+    expect(item.name).to eq(item_params[:name])
+    expect(item.name).to eq(item_params[:id])
+    expect(item.name).to eq(item_params[:description])
+    expect(item.name).to eq(item_params[:image_url])
+    expect(item['created_at']).to be_nil
+    expect(item['updated_at']).to be_nil
+    # I receive a 201 JSON  response if the record is successfully created
+    # And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
+  end
 end
 
-# When I send a POST request to `/api/v1/items` with a name, description, and image_url
-# I receive a 201 JSON  response if the record is successfully created
-# And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
-#
+
 # * Verify that your non-GET requests work using Postman or curl. (Hint: `ActionController::API`). Why doesn’t the default `ApplicationController` support POST and PUT requests?
