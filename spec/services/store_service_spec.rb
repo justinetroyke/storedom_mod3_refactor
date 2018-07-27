@@ -7,8 +7,7 @@ describe "returns stores from bestbuy" do
     params = {format: 'json'}
     path = "stores(area(#{zip},#{miles}))"
 
-    response = StoreService.new(path, params).nearby_stores
-
-    expect(response.count).to eq(14)
+    response = StoreService.new(path, params).response
+    expect(response['total']).to eq(14)
   end
 end

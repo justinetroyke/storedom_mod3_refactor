@@ -13,9 +13,4 @@ class StoreService
     response = conn.get(@path, @params)
     JSON.parse(response.body)
   end
-
-  def nearby_stores
-    binding.pry
-    response
-  end
 end
