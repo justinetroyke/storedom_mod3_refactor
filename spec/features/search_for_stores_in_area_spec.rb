@@ -17,8 +17,10 @@ describe 'enter zip code for stores near by' do
       # And I should see a message that says "14 Total Stores"
       within('.stores') do
         expect(page).to have_content("BELMAR CO")
-        xpect(page).to have_content("Lakewood")
-        expect(page).to have_content()
+        expect(page).to have_content("Lakewood")
+        expect(page).to have_content(5.31)
+        expect(page).to have_content("303-742-8039")
+        expect(page).to have_content("Big Box")
       end
       # And I should see stores within 25 miles of 80202
       # And I should see the long name, city, distance, phone number and store type for each of the 10 results

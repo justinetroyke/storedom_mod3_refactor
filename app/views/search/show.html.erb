@@ -1,0 +1,15 @@
+<body>
+  <div>
+    <div class="stores">
+      <% if @stores %>
+        <% @stores.each do |store| %>
+          <li><%= store.name %></li>
+          <li><%= store.city %></li>
+          <li><%= store.distance %></li>
+          <li><%= store.phone_number %></li>
+          <li><%= store.type %></li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</body>
