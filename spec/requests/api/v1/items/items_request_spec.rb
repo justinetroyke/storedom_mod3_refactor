@@ -3,12 +3,23 @@ require 'rails_helper'
 describe 'Items API' do
   it 'sends a list of all items' do
     create_list(:item, 3)
-binding.pry
+
     get "/api/v1/items"
+    # When I send a GET request to `/api/v1/items`
 
     expect(response).to be_successful
     items = JSON.parse(response.body)
+
     expect(items.count).to eq(3)
+    items.each do |item|
+      expect(item['id']).to be_instance_of(Integer)
+      expect(item['name']).to be_instance_of(String)
+      expect(item['image_url']).to be_instance_of(String)
+      expect(item['created_at']).to be_nil
+      expect(item['updated_at']).to be_nil
+    end
+    # I receive a 200 JSON response containing all items
+    # And each item has an id, name, description, and image_url but not the created_at or updated_at
   end
 end
 
@@ -16,9 +27,6 @@ end
 #
 # We need an API for the application that can both read and write data. Start by focusing on functionality for items. All of this should happen in a dedicated, versioned controller.
 #
-# When I send a GET request to `/api/v1/items`
-# I receive a 200 JSON response containing all items
-# And each item has an id, name, description, and image_url but not the created_at or updated_at
 #
 # When I send a GET request to `/api/v1/items/1`
 # I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
