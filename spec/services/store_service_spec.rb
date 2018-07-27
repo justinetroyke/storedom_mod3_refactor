@@ -5,7 +5,7 @@ describe "returns stores from bestbuy" do
     zip = 80202
     miles = 25
     params = {format: 'json'}
-    path = "stores(area(#{zip}#{miles}))"
+    path = "stores(area(#{zip},#{miles}))"
 
     response = StoreService.new(path, params).nearby_stores
 
