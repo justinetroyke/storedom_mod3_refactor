@@ -73,6 +73,3 @@ describe 'Items API' do
     # And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
   end
 end
-
-
-# * Verify that your non-GET requests work using Postman or curl. (Hint: `ActionController::API`). Why doesn’t the default `ApplicationController` support POST and PUT requests?
