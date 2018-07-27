@@ -21,7 +21,7 @@ class Store
     @result['phone']
   end
 
-  def store_type
+  def type
     @result['storeType']
   end
 end

@@ -4,7 +4,7 @@ describe 'enter zip code for stores near by' do
   context "As a guest user search 80202" do
     it "stores within 25 miles of 80202" do
       zip = 80202
-      message = "14 Total Stores"
+      message = "10 Total Stores"
 
       visit '/'
       # When I visit "/"

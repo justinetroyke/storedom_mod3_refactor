@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
   def show
-    @stores = StorePresenter.new(params['zip'])
-    store_count = results[@stores.count]
-    flash[:notice] = "'#{store_count} Total Stores'"
+    @stores = StorePresenter.new(params['zip']).nearby_stores
+    flash[:notice] = "'#{@stores.count} Total Stores'"
   end
 end
