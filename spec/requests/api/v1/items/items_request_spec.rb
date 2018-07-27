@@ -60,14 +60,15 @@ describe 'Items API' do
     # item = JSON.parse(response.body)
     # When I send a POST request to `/api/v1/items` with a name, description, and image_url
     item = Item.last
+    result = JSON.parse(response.body)
     assert_response :success
     expect(response).to be_successful
     expect(item.name).to eq(item_params[:name])
-    expect(item.name).to eq(item_params[:id])
-    expect(item.name).to eq(item_params[:description])
-    expect(item.name).to eq(item_params[:image_url])
-    expect(item['created_at']).to be_nil
-    expect(item['updated_at']).to be_nil
+    expect(item.id).to eq(1)
+    expect(item.description).to eq(item_params[:description])
+    expect(item.image_url).to eq(item_params[:image_url])
+    expect(result['created_at']).to be_nil
+    expect(result['updated_at']).to be_nil
     # I receive a 201 JSON  response if the record is successfully created
     # And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_at
   end
